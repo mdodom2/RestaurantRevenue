@@ -6,9 +6,12 @@
 #           Kishen Jayanti    #
 ###############################
 rm(list=ls())
-install.packages("gmodels"); library("gmodels")
-install.packages("Hmisc"); library("Hmisc")
-install.packages("reshape"); library("reshape")
+# install.packages("Hmisc"); 
+# install.packages("gmodels");
+# install.packages("reshape");
+library("Hmisc")
+library("gmodels") 
+library("reshape")
 
 # import information from Watson
 Orig.data <- read.csv("train.csv", header = T)
@@ -18,8 +21,13 @@ data <- Orig.data
 #########################################
 
 data$Open.Date <- as.Date(data$Open.Date, format = "%m/%d/%Y")
-data$year <- format(data$Open.Date, format = "%Y")
-data$month <- format(data$Open.Date, format = "%m")
+# data$year <- format(data$Open.Date, format = "%Y")
+# data$month <- format(data$Open.Date, format = "%m")
+
+# Data Exploration
+#########################################
+test <- data.frame(sapply(data [sapply(data, is.integer)==T], as.numeric))
+
 
 # Crosstabs
 ##########################################
